@@ -7,11 +7,33 @@ group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
+    maven { url('https://artifactory.klarna.net/artifactory/r-maven-jcenter') }
+    maven { url('https://artifactory.klarna.net/artifactory/v-maven-releases') }
+    maven { url('https://artifactory.klarna.net/artifactory/v-maven-snapshots') }
 }
 
+sourceCompatibility = 11
+targetCompatibility = 11
+
 dependencies {
+
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
+
+    compile "com.klarna.decisionengines.variableclients:jade-events:3-20210304130109-f457efd65"
+
+    compile "org.apache.avro:avro:1.9.2"
+
+    compile "io.confluent:kafka-avro-serializer:5.4.1"
+
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+    implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.0.0'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
+
+    implementation group: 'org.apache.kafka', name: 'kafka_2.12', version: '2.0.0'
+
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
